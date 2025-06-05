@@ -7,7 +7,7 @@ export default defineNuxtConfig({
   ],
   nitro: {
     prerender: {
-      routes: ['/'],  // Pre-render home page for offline use
+      routes: ['/', '/offline'],  // Pre-render pages for offline use
     }
   },
   pwa: {
