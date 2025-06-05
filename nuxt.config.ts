@@ -34,6 +34,14 @@ export default defineNuxtConfig({
             cacheName: 'image-cache',
             expiration: { maxEntries: 100, maxAgeSeconds: 604800 }
           }
+        },
+        {
+          urlPattern: 'https://example.com/.*',
+          handler: 'NetworkFirst',
+          options: {
+            cacheName: 'api-cache',
+            expiration: { maxEntries: 50, maxAgeSeconds: 86400 }
+          }
         }
       ]
     }
