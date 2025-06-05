@@ -36,6 +36,13 @@ export default defineNuxtConfig({
           }
         },
         {
+          urlPattern: '/hello.json',
+          handler: 'CacheFirst',
+          options: {
+            cacheName: 'static-cache'
+          }
+        },
+        {
           urlPattern: 'https://example.com/.*',
           handler: 'NetworkFirst',
           options: {
