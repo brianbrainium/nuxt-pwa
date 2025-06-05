@@ -35,5 +35,6 @@ async function fetchMessage() {
     <p class="mb-2">Available Storage: {{ availableMemory }}</p>
     <button @click="fetchMessage" class="px-3 py-1 bg-blue-500 text-white rounded">Fetch Offline Message</button>
     <p class="mt-2">{{ message }}</p>
+    <NuxtLink to="/memory" class="text-blue-500 underline mt-4 inline-block">View Available Memory</NuxtLink>
   </main>
 </template>
