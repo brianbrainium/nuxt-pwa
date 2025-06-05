@@ -1,15 +1,13 @@
 import { defineNuxtConfig } from 'nuxt/config'
 
 export default defineNuxtConfig({
-  // Disable server-side rendering for SPA mode
-  ssr: false,
+  ssr: false,  // Disable server-side rendering for SPA mode
   modules: [
     '@vite-pwa/nuxt',
   ],
   nitro: {
     prerender: {
-      // Pre-render home page for offline use
-      routes: ['/'],
+      routes: ['/'],  // Pre-render home page for offline use
     }
   },
   pwa: {
