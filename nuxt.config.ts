@@ -21,6 +21,21 @@ export default defineNuxtConfig({
         { src: '/pwa-icon-192x192.png', sizes: '192x192', type: 'image/png' },
         { src: '/pwa-icon-512x512.png', sizes: '512x512', type: 'image/png' }
       ]
+    },
+    workbox: {
+      globPatterns: ['**/*.{js,css,html,png,svg,ico}'],
+      cleanupOutdatedCaches: true,
+      clientsClaim: true,
+      runtimeCaching: [
+        {
+          urlPattern: /\.(?:png|jpg|jpeg|svg|gif)$/,
+          handler: 'CacheFirst',
+          options: {
+            cacheName: 'image-cache',
+            expiration: { maxEntries: 100, maxAgeSeconds: 604800 }
+          }
+        }
+      ]
     }
   }
 })
