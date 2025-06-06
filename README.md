@@ -73,3 +73,21 @@ bun run preview
 ```
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+
+## Testing
+
+Before running the test suite make sure all dependencies are installed:
+
+```bash
+# npm
+npm install && npm test
+
+# pnpm
+pnpm install && pnpm test
+
+# yarn
+yarn install && yarn test
+
+# bun
+bun install && bun test
+```

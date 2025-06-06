@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import PdfDropZone from '~/components/PdfDropZone.vue'
+import PdfPreview from '~/components/PdfPreview.vue'
+import { usePdfStore } from '~/stores/pdfStore'
+
+const store = usePdfStore()
 
 const availableMemory = ref('Calculating...')
 const message = ref('')
@@ -34,6 +38,13 @@ async function fetchMessage() {
   <main class="p-4">
     <h1 class="text-xl font-bold mb-4">Home Page</h1>
     <PdfDropZone class="mb-4" />
+    <button
+      class="px-3 py-1 bg-green-500 text-white rounded mb-4"
+      @click="store.split"
+    >
+      Split PDF
+    </button>
+    <PdfPreview class="mb-4" />
     <p class="mb-2">Available Storage: {{ availableMemory }}</p>
     <button @click="fetchMessage" class="px-3 py-1 bg-blue-500 text-white rounded">Fetch Offline Message</button>
     <p class="mt-2">{{ message }}</p>
