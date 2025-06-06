@@ -20,6 +20,8 @@ yarn install
 bun install
 ```
 
+Install these dependencies before running `npm test` or `npm run build`.
+
 ## Development Server
 
 Start the development server on `http://localhost:3000`:
