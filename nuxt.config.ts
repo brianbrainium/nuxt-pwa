@@ -6,6 +6,9 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@vite-pwa/nuxt',
   ],
+  plugins: [
+    { src: '~/plugins/pdfjs', mode: 'client' }
+  ],
   nitro: {
     prerender: {
       routes: ['/', '/offline'],  // Pre-render pages for offline use

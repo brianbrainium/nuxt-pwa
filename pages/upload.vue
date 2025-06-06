@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { usePdfStore } from '~/stores/pdfStore'
+import PdfInfo from '~/components/PdfInfo.vue'
 
+const store = usePdfStore()
 const selectedFile = ref<File | null>(null)
 const fileInput = ref<HTMLInputElement | null>(null)
 
@@ -8,6 +11,7 @@ function onFileChange(e: Event) {
   const files = (e.target as HTMLInputElement).files
   if (files && files[0]) {
     selectedFile.value = files[0]
+    store.parsePdf(files[0])
   }
 }
 
@@ -16,6 +20,7 @@ function onDrop(e: DragEvent) {
   const files = e.dataTransfer?.files
   if (files && files[0]) {
     selectedFile.value = files[0]
+    store.parsePdf(files[0])
   }
 }
 
@@ -43,5 +48,7 @@ function onDragOver(e: DragEvent) {
         @change="onFileChange"
       />
     </div>
+    <p v-if="store.parsing" class="mt-2">Parsing...</p>
+    <PdfInfo />
   </main>
 </template>

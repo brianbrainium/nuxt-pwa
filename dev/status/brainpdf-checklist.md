@@ -11,3 +11,9 @@
 - [x] Monitor utility created
 - [x] MemoryUsage component displays data
 - [x] Integrated into layout
+
+## PDF Parsing
+- [x] Added pdfjs-dist dependency and worker configuration
+- [x] Created parsing utility
+- [x] Store parses PDF metadata and outline
+- [x] Upload page displays parsed info
