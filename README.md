@@ -73,3 +73,17 @@ bun run preview
 ```
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+
+## Tests
+
+Ensure the development dependencies are installed (see [Setup](#setup)). Then run the test suite with:
+
+```bash
+# npm
+npm test
+
+# pnpm
+pnpm test
+```
+
+This runs the Vitest tests located in the `tests/` directory.
