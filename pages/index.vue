@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
+import PdfDropZone from '~/components/PdfDropZone.vue'
 
 const availableMemory = ref('Calculating...')
 const message = ref('')
@@ -32,6 +33,7 @@ async function fetchMessage() {
 <template>
   <main class="p-4">
     <h1 class="text-xl font-bold mb-4">Home Page</h1>
+    <PdfDropZone class="mb-4" />
     <p class="mb-2">Available Storage: {{ availableMemory }}</p>
     <button @click="fetchMessage" class="px-3 py-1 bg-blue-500 text-white rounded">Fetch Offline Message</button>
     <p class="mt-2">{{ message }}</p>
