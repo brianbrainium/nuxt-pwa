@@ -3,6 +3,7 @@ import { defineNuxtConfig } from 'nuxt/config'
 export default defineNuxtConfig({
   ssr: false,  // Disable server-side rendering for SPA mode
   modules: [
+    '@pinia/nuxt',
     '@vite-pwa/nuxt',
   ],
   nitro: {
