@@ -17,11 +17,7 @@ export default defineNuxtConfig({
       name: 'Nuxt 3 PWA',
       short_name: 'NuxtPWA',
       description: 'A Nuxt 3 Progressive Web App',
-      theme_color: '#4A90E2',
-      icons: [
-        { src: '/pwa-icon-192x192.png', sizes: '192x192', type: 'image/png' },
-        { src: '/pwa-icon-512x512.png', sizes: '512x512', type: 'image/png' }
-      ]
+      theme_color: '#4A90E2'
     },
     workbox: {
       globPatterns: ['**/*.{js,css,html,png,svg,ico,json}'],
