@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { PDFDocument } from 'pdf-lib'
-import { splitBySections, splitBySize, splitByTopLevelTOC, Section, OutlineEntry } from '~/utils/pdfSplitter'
+import type { Section, OutlineEntry } from '~/utils/pdfSplitter'
+import { splitBySections, splitBySize, splitByTopLevelTOC } from '~/utils/pdfSplitter'
 import { ref } from 'vue'
 
 export const usePdfStore = defineStore('pdf', () => {
@@ -15,26 +16,30 @@ export const usePdfStore = defineStore('pdf', () => {
     file.value = f
     const buf = await f.arrayBuffer()
     pdfDoc.value = await PDFDocument.load(buf)
+    selectedSections.value = []
+    outline.value = []
+    splitParts.value = []
+    progress.value = 0
   }
 
   async function splitBySelected() {
     if (!pdfDoc.value) return
     progress.value = 0
-    splitParts.value = await splitBySections(pdfDoc.value, selectedSections.value)
+    splitParts.value = await splitBySections(pdfDoc.value!, selectedSections.value)
     progress.value = 100
   }
 
   async function splitByMaxSize(sizeMB: number) {
     if (!pdfDoc.value) return
     progress.value = 0
-    splitParts.value = await splitBySize(pdfDoc.value, sizeMB)
+    splitParts.value = await splitBySize(pdfDoc.value!, sizeMB)
     progress.value = 100
   }
 
   async function splitByTOC() {
     if (!pdfDoc.value) return
     progress.value = 0
-    splitParts.value = await splitByTopLevelTOC(pdfDoc.value, outline.value)
+    splitParts.value = await splitByTopLevelTOC(pdfDoc.value!, outline.value)
     progress.value = 100
   }
 
