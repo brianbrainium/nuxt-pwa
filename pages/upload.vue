@@ -3,6 +3,7 @@ import { ref } from 'vue'
 
 const selectedFile = ref<File | null>(null)
 const fileInput = ref<HTMLInputElement | null>(null)
+const errorMessage = ref('')
 
 function onFileChange(e: Event) {
   const files = (e.target as HTMLInputElement).files
@@ -15,7 +16,12 @@ function onDrop(e: DragEvent) {
   e.preventDefault()
   const files = e.dataTransfer?.files
   if (files && files[0]) {
-    selectedFile.value = files[0]
+    if (files[0].type === 'application/pdf') {
+      errorMessage.value = ''
+      selectedFile.value = files[0]
+    } else {
+      errorMessage.value = 'Only PDF files are supported'
+    }
   }
 }
 
@@ -43,5 +49,6 @@ function onDragOver(e: DragEvent) {
         @change="onFileChange"
       />
     </div>
+    <p v-if="errorMessage" class="text-red-500 mt-2">{{ errorMessage }}</p>
   </main>
 </template>

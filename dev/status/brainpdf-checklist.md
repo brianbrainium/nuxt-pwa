@@ -16,3 +16,10 @@
 - [ ] Implement PDF parser to extract metadata and outline
 - [ ] Update pdf store with parsed metadata and outline
 - [ ] Display outline and metadata in UI
+
+## PDF Splitting
+- [ ] Add pdf-lib library
+- [ ] Implement each split mode
+- [ ] Add UI to control splitting
+- [ ] Store results for later use
+
