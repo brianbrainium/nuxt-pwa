@@ -11,3 +11,9 @@
 - [x] Monitor utility created
 - [x] MemoryUsage component displays data
 - [x] Integrated into layout
+
+## PDF Splitting
+- [ ] Add pdf-lib library
+- [ ] Implement each split mode
+- [ ] Add UI to control splitting
+- [ ] Store results for later use
