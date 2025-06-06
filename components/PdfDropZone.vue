@@ -5,6 +5,7 @@ import { usePdfStore } from '~/stores/pdfStore'
 const store = usePdfStore()
 const fileInput = ref<HTMLInputElement | null>(null)
 const isDragging = ref(false)
+const errorMessage = ref('')
 
 function handleFiles(files: FileList | null) {
   if (!files || !files[0]) return
@@ -18,7 +19,15 @@ function handleFiles(files: FileList | null) {
 function onDrop(e: DragEvent) {
   e.preventDefault()
   isDragging.value = false
-  handleFiles(e.dataTransfer?.files ?? null)
+  const files = e.dataTransfer?.files
+  if (files && files[0]) {
+    if (files[0].type === 'application/pdf') {
+      errorMessage.value = ''
+      handleFiles(files)
+    } else {
+      errorMessage.value = 'Only PDF files are supported'
+    }
+  }
 }
 
 function onDragOver(e: DragEvent) {
@@ -53,4 +62,5 @@ function openFile() {
     <p v-else>{{ store.file.name }} ({{ (store.file.size / 1024).toFixed(1) }} KB)</p>
     <input ref="fileInput" type="file" accept="application/pdf" class="hidden" @change="onFileChange" />
   </div>
+  <p v-if="errorMessage" class="text-red-500 mt-2">{{ errorMessage }}</p>
 </template>
