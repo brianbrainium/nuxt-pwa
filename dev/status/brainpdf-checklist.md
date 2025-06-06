@@ -11,3 +11,10 @@
 - [x] Monitor utility created
 - [x] MemoryUsage component displays data
 - [x] Integrated into layout
+
+## TOC Tree
+- [ ] Create TOCTree component
+- [ ] Checkbox multi-select implemented
+- [ ] Cascade selection logic (parent/child sync)
+- [ ] TOC tree integrated into page
+- [ ] Selection stored in state

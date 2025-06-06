@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { usePdfStore } from '~/stores/pdfStore'
+import { usePdfStore } from '~/stores/pdf'
 
 const store = usePdfStore()
 const fileInput = ref<HTMLInputElement | null>(null)
