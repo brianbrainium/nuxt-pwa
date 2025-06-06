@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { usePdfStore } from '~/stores/pdfStore'
+import { usePdfStore } from '~/stores/pdf'
 
 const store = usePdfStore()
 const fileInput = ref<HTMLInputElement | null>(null)
@@ -10,8 +10,7 @@ function handleFiles(files: FileList | null) {
   if (!files || !files[0]) return
   const file = files[0]
   if (file.type === 'application/pdf' || file.name.endsWith('.pdf')) {
-    store.file = file
-    store.fileData = null
+    store.loadFile(file)
   }
 }
 

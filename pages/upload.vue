@@ -1,47 +1,23 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { usePdfStore } from '~/stores/pdf'
+import PdfDropZone from '~/components/PdfDropZone.vue'
+import SplitOptions from '~/components/SplitOptions.vue'
 
-const selectedFile = ref<File | null>(null)
-const fileInput = ref<HTMLInputElement | null>(null)
-
-function onFileChange(e: Event) {
-  const files = (e.target as HTMLInputElement).files
-  if (files && files[0]) {
-    selectedFile.value = files[0]
-  }
-}
-
-function onDrop(e: DragEvent) {
-  e.preventDefault()
-  const files = e.dataTransfer?.files
-  if (files && files[0]) {
-    selectedFile.value = files[0]
-  }
-}
-
-function onDragOver(e: DragEvent) {
-  e.preventDefault()
-}
+const store = usePdfStore()
 </script>
 
 <template>
-  <main class="p-4">
-    <h1 class="text-xl font-bold mb-4">Upload PDF</h1>
-    <div
-      class="border-2 border-dashed rounded p-8 text-center cursor-pointer"
-      @drop="onDrop"
-      @dragover="onDragOver"
-      @click="fileInput?.click()"
-    >
-      <p v-if="!selectedFile">Drag and drop a PDF here or click to choose</p>
-      <p v-else>Selected file: {{ selectedFile.name }}</p>
-      <input
-        ref="fileInput"
-        type="file"
-        accept="application/pdf"
-        class="hidden"
-        @change="onFileChange"
-      />
+  <main class="p-4 space-y-4">
+    <h1 class="text-xl font-bold">Upload PDF</h1>
+    <PdfDropZone />
+    <SplitOptions v-if="store.file" />
+    <div v-if="store.splitParts.length" class="space-y-1">
+      <h2 class="font-semibold">Parts</h2>
+      <ul>
+        <li v-for="(part, idx) in store.splitParts" :key="idx">
+          {{ part.name }} ({{ (part.blob.size / 1024).toFixed(1) }} KB)
+        </li>
+      </ul>
     </div>
   </main>
 </template>
