@@ -20,6 +20,8 @@ yarn install
 bun install
 ```
 
+Install these dependencies before running `npm test` or `npm run build`.
+
 ## Development Server
 
 Start the development server on `http://localhost:3000`:
@@ -74,6 +76,7 @@ bun run preview
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
 
+
 ## Tests
 
 Ensure the development dependencies are installed (see [Setup](#setup)). Then run the test suite with:
@@ -87,3 +90,14 @@ pnpm test
 ```
 
 This runs the Vitest tests located in the `tests/` directory.
+
+## PDF Splitting
+
+This project uses [`pdf-lib`](https://github.com/Hopding/pdf-lib) to split PDF files in the browser.
+
+1. **Upload a PDF** – Drag a file onto the drop zone on the home page or use the upload page to choose a PDF from your device.
+2. **Choose how to split** – After uploading you can select individual pages or ranges to create multiple parts.
+3. **Download the results** – Each generated part can be downloaded as its own PDF once the split is finished.
+
+When building the application, `pdf-lib` is bundled with the rest of the Nuxt app. Run `npm run build` (or the equivalent `pnpm`, `yarn` or `bun` command) before deploying.
+
